@@ -42,6 +42,7 @@ Transport <|-- CargoTransport
 Cargo <--o CargoTransport
 class CargoTransport {
 - cargo_capacity : double
+- cargo_total : double
 
 + CargoTransport(name : string, type : TransportType, cargo_capacity : double)
 
