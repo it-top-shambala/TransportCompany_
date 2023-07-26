@@ -35,7 +35,7 @@ abstract class Transport {
 + getName() : string
 
 + {abstract} addObject(object : Object) :  bool
-+ {abstract} getObjects() : Object[]
++ getObjects() : Object[]
 }
 
 Transport <|-- CargoTransport
@@ -47,8 +47,7 @@ class CargoTransport {
 
 + getCargoCapacity() : double
 
-+ addObject(cargo : Cargo) :  bool
-+ getObjects() : Object[]
++ addObject(object : Object) :  bool
 }
 
 Transport <|-- PassengerTransport
