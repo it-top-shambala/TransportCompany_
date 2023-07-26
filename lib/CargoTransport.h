@@ -14,6 +14,8 @@ public:
         _cargo_total = 0;
     }
 
+    ~CargoTransport() override = default;
+
     bool addObject(Object *object) override {
         auto cargo = dynamic_cast<Cargo*>(object);
         auto total = _cargo_total + cargo->getWeight();

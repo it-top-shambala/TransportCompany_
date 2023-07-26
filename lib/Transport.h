@@ -23,9 +23,6 @@ protected:
     Transport(const string &name, TransportType type) : _name(name), _type(type) {
         _objects = new vector<Object*>;
     }
-    virtual ~Transport() {
-        delete _objects;
-    }
 
 public:
     const string &getName() const {
@@ -39,6 +36,10 @@ public:
     virtual bool addObject(Object* object) = 0;
     vector<Object *> *getObjects() const {
         return _objects;
+    }
+
+    virtual ~Transport() {
+        delete _objects;
     }
 };
 
