@@ -1,0 +1,118 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+enum TransportType {
+Car,
+Rail,
+Avia
+}
+
+abstract class Object {
+# Object()
+}
+
+Object <|-- Cargo
+class Cargo {
+- name : string
+- weight : double
+
++ Cargo(name : string, weight : double)
+
++ getName() : string
++ getWeight : double
+}
+
+
+TransportType <--* Transport
+Object <--o Transport
+abstract class Transport {
+- name : string
+- type : TransportType
+- objects : Object[]
+
+# Transport(name : string, type : TransportType)
+
++ getName() : string
+
++ {abstract} addObject(object : Object) :  bool
++ {abstract} getObjects() : Object[]
+}
+
+Transport <|-- CargoTransport
+Cargo <--o CargoTransport
+class CargoTransport {
+- cargo_capacity : double
+
++ CargoTransport(name : string, type : TransportType, cargo_capacity : double)
+
++ getCargoCapacity() : double
+
++ addObject(cargo : Cargo) :  bool
++ getObjects() : Object[]
+}
+
+Transport <|-- PassengerTransport
+class PassengerTransport {
+- passenger_capacity : int
+
++ PassengerTransport(name : string, type : TransportType, passenger_capacity : int)
+
++ getPassengerCapacity() : int
+}
+
+Transport <--* Order
+class Order {
+- transport : Transport
+- start : string
+- finish : string
+
++ Order(transport : Transport, start : string, finish : string)
+
++ getTransport() : Transport
++ getStart() : string
++ getFinish() : string
+}
+
+Transport <--* OrderBuilder
+Order <--o OrderBuilder
+class OrderBuilder{
+- transport : Transport
+- start : string
+- finish : string
+
++ OrderBuilder()
+
++ addTransport(transport : Transport) : void
++ addStart(start : string) : void
++ addFinish(finish : string) : void
+
++ Build() : Order
+}
+
+enum TransportVariety {
+Cargo,
+Passenger
+}
+
+
+Transport <--o TransportBuilder
+TransportType <--* TransportBuilder
+TransportVariety <--* TransportBuilder
+CargoTransport <-- TransportBuilder
+class TransportBuilder {
+- name : string
+- type : TransportType
+- variety : TransportVariety
+- cargo_capacity : double
+
++ TransportBuilder()
+
++ setName(name : string) : void
++ setType(type : TransportType) : void
++ setVariety(variety : TransportVariety) : void
++ setCargoCapacity(cargo_capacity : double) : void
+
++ Build() : Transport
+}
+
+@enduml
