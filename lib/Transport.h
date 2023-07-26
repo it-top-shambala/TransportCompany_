@@ -16,9 +16,10 @@ class Transport {
 private:
     string _name;
     TransportType _type;
-    vector<Object*>* _objects;
 
 protected:
+    vector<Object*>* _objects;
+
     Transport(const string &name, TransportType type) : _name(name), _type(type) {
         _objects = new vector<Object*>;
     }

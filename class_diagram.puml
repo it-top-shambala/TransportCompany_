@@ -28,7 +28,7 @@ Object <--o Transport
 abstract class Transport {
 - name : string
 - type : TransportType
-- objects : Object[]
+# objects : Object[]
 
 # Transport(name : string, type : TransportType)
 
