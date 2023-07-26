@@ -8,9 +8,7 @@ protected:
     virtual ~Object() = default;
 
 public:
-    Object* clone() {
-        return this;
-    }
+    virtual Object* clone() = 0;
 };
 
 

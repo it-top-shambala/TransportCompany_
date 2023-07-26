@@ -14,7 +14,21 @@ public:
         _cargo_total = 0;
     }
 
+private:
+    CargoTransport(const string &name, TransportType type, vector<Object *> *objects, double cargoCapacity,
+                   double cargoTotal) : Transport(name, type, objects), _cargo_capacity(cargoCapacity),
+                                        _cargo_total(cargoTotal) {}
+
+public:
     ~CargoTransport() override = default;
+
+    double getCargoCapacity() const {
+        return _cargo_capacity;
+    }
+
+    double getCargoTotal() const {
+        return _cargo_total;
+    }
 
     bool addObject(Object *object) override {
         auto cargo = dynamic_cast<Cargo*>(object);
@@ -25,6 +39,10 @@ public:
         _cargo_total += cargo->getWeight();
         _objects->push_back(object->clone());
         return true;
+    }
+
+    Transport *clone() override {
+        return new CargoTransport(this->getName(), this->getType(), this->getObjects(), this->_cargo_capacity, this->_cargo_total);
     }
 };
 
