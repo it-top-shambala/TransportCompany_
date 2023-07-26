@@ -19,7 +19,7 @@ class Cargo {
 + Cargo(name : string, weight : double)
 
 + getName() : string
-+ getWeight : double
++ getWeight() : double
 }
 
 
