@@ -6,6 +6,11 @@ class Object {
 protected:
     Object() {}
     virtual ~Object() = default;
+
+public:
+    Object* clone() {
+        return this;
+    }
 };
 
 

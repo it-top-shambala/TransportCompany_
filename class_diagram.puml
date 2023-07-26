@@ -9,6 +9,7 @@ Avia
 
 abstract class Object {
 # Object()
++ clone() : Object
 }
 
 Object <|-- Cargo
