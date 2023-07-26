@@ -5,6 +5,7 @@
 class Object {
 protected:
     Object() {}
+    virtual ~Object() = default;
 };
 
 
