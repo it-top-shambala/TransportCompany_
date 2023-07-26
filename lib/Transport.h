@@ -35,10 +35,10 @@ public:
         return _type;
     }
 
+    virtual bool addObject(Object* object) = 0;
     vector<Object *> *getObjects() const {
         return _objects;
     }
-
 };
 
 
