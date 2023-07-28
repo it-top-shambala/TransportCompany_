@@ -22,6 +22,15 @@ class Cargo {
 + getWeight() : double
 }
 
+Object <|-- Passenger
+class Passenger {
+- name : string
+
++ Passenger(name : string)
+
++ getName() : string
+}
+
 
 TransportType <--* Transport
 Object <--o Transport
@@ -47,17 +56,42 @@ class CargoTransport {
 + CargoTransport(name : string, type : TransportType, cargo_capacity : double)
 
 + getCargoCapacity() : double
++ getCargoTotal() : double
 
 + addObject(object : Object) :  bool
 }
 
 Transport <|-- PassengerTransport
+Passenger <--o PassengerTransport
 class PassengerTransport {
 - passenger_capacity : int
+- passenger_total : int
 
 + PassengerTransport(name : string, type : TransportType, passenger_capacity : int)
 
 + getPassengerCapacity() : int
++ getPassengerTotal() : int
+
++ addObject(object : Object) :  bool
+}
+
+Transport <|-- UniversalTransport
+Passenger <--o UniversalTransport
+Cargo <--o UniversalTransport
+class UniversalTransport {
+- passenger_capacity : int
+- passenger_total : int
+- cargo_capacity : double
+- cargo_total : double
+
++ UniversalTransport(name : string, type : TransportType, passenger_capacity : int, cargo_capacity : double)
+
++ getPassengerCapacity() : int
++ getPassengerTotal() : int
++ getCargoCapacity() : double
++ getCargoTotal() : double
+
++ addObject(object : Object) :  bool
 }
 
 Transport <--* Order
@@ -91,7 +125,8 @@ class OrderBuilder{
 
 enum TransportVariety {
 Cargo,
-Passenger
+Passenger,
+Universal
 }
 
 
@@ -99,11 +134,14 @@ Transport <--o TransportBuilder
 TransportType <--* TransportBuilder
 TransportVariety <--* TransportBuilder
 CargoTransport <-- TransportBuilder
+PassengerTransport <-- TransportBuilder
+UniversalTransport <-- TransportBuilder
 class TransportBuilder {
 - name : string
 - type : TransportType
 - variety : TransportVariety
 - cargo_capacity : double
+- passenger_capacity : int
 
 + TransportBuilder()
 
@@ -111,6 +149,7 @@ class TransportBuilder {
 + setType(type : TransportType) : void
 + setVariety(variety : TransportVariety) : void
 + setCargoCapacity(cargo_capacity : double) : void
++ setPassengerCapacity(passenger_capacity : int) : void
 
 + Build() : Transport
 }

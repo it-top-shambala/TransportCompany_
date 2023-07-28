@@ -27,6 +27,8 @@ public:
 
     bool addObject(Object *object) override {
         auto cargo = dynamic_cast<Cargo*>(object);
+        if (cargo == nullptr) return false;
+
         auto total = _cargo_total + cargo->getWeight();
 
         if (total > _cargo_capacity) return false;
