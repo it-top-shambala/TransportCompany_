@@ -22,7 +22,7 @@ public:
     }
 
     Transport *getTransport() const {
-        return _transport->clone();
+        return _transport;
     }
 
     const string &getStart() const {

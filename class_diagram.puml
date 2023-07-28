@@ -9,7 +9,6 @@ Avia
 
 abstract class Object {
 # Object()
-+ clone() : Object
 }
 
 Object <|-- Cargo
@@ -32,14 +31,11 @@ abstract class Transport {
 # objects : Object[]
 
 # Transport(name : string, type : TransportType)
-# Transport(name : string, type : TransportType, objects : Object[])
 
 + getName() : string
 
 + {abstract} addObject(object : Object) :  bool
 + getObjects() : Object[]
-
-+ {abstract} clone() : Transport
 }
 
 Transport <|-- CargoTransport
@@ -49,13 +45,10 @@ class CargoTransport {
 - cargo_total : double
 
 + CargoTransport(name : string, type : TransportType, cargo_capacity : double)
-- CargoTransport(name : string, type : TransportType, objects : Object[], cargo_capacity : double, cargo_total : double)
 
 + getCargoCapacity() : double
 
 + addObject(object : Object) :  bool
-
-+ clone() : Transport
 }
 
 Transport <|-- PassengerTransport

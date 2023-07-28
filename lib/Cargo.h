@@ -22,10 +22,6 @@ public:
     double getWeight() const {
         return _weight;
     }
-
-    Object *clone() override {
-        return new Cargo(this->_name, this->_weight);
-    }
 };
 
 
